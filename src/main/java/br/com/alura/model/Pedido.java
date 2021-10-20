@@ -2,13 +2,16 @@ package br.com.alura.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,11 +22,12 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private LocalDate data = LocalDate.now();
-	private BigDecimal valorTotal;	
+	private BigDecimal valorTotal = new BigDecimal(0);	
 	@ManyToOne
 	private Cliente cliente;
 	
-	private List<ItemPedido> itens;
+	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+	private List<ItemPedido> itens = new ArrayList<ItemPedido>();
 
 	public Pedido(Cliente cliente) {
 		this.cliente = cliente;
@@ -39,6 +43,12 @@ public class Pedido {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public void adicionaItem(ItemPedido item) {
+		item.setPedido(this);
+		this.itens.add(item);
+		this.valorTotal = this.valorTotal.add((item.getPrecoUnitario().multiply(new BigDecimal(item.getQtd()))));
 	}
 
 	public LocalDate getData() {

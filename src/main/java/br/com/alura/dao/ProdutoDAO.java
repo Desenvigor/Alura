@@ -15,4 +15,8 @@ public class ProdutoDAO {
 	public void cadastrar(Produto produto) {
 		em.persist(produto);
 	}
+	
+	public Produto pegaProdutoPorId(Long id) {
+		return em.find(Produto.class, id);
+	}
 }

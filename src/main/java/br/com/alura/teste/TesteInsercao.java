@@ -11,18 +11,19 @@ import br.com.alura.model.Produto;
 import br.com.alura.util.JPAUtil;
 
 public class TesteInsercao {
-	public static void main(String[] args) {
-		Categoria categoria = new Categoria("CELULAR");
-		Produto produto = new Produto("Xiaomi Redmi 2008", "Celular do ano passado", new BigDecimal(200), categoria);
+	public static void main(String[] args) {	
 		EntityManager em = JPAUtil.createEntityManager();
-		
 		CategoriaDAO dao = new CategoriaDAO(em);
 		System.out.println(dao.findByName("CELULAR"));
 		
-//		inserirNovoProduto(categoria, produto, em);
+		inserirNovoProduto();
 	}
 
-	private static void inserirNovoProduto(Categoria categoria, Produto produto, EntityManager em) {
+	private static void inserirNovoProduto() {
+		Categoria categoria = new Categoria("CELULAR");
+		Produto produto = new Produto("Xiaomi Redmi 2008", "Celular do ano passado", new BigDecimal(200), categoria);
+		
+		EntityManager em = JPAUtil.createEntityManager();
 		ProdutoDAO dao = new ProdutoDAO(em);
 		CategoriaDAO daoCategoria = new CategoriaDAO(em);
 		

@@ -16,7 +16,7 @@ public class Produto {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	private String nome;
 	private String descricao;
 	private BigDecimal valor;
@@ -32,10 +32,13 @@ public class Produto {
 		this.dataCadastro = LocalDate.now();
 	}
 	
-	public Integer getId() {
+	public Produto() {
+	}
+
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getNome() {
