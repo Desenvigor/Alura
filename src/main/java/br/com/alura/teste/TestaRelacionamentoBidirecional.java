@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import org.hibernate.internal.build.AllowSysOut;
 
 import br.com.alura.dao.CategoriaDAO;
 import br.com.alura.dao.ClienteDAO;
@@ -30,7 +29,7 @@ public class TestaRelacionamentoBidirecional {
 		Cliente cliente = new Cliente("Elayne", "6542231");
 		Pedido pedido = new Pedido(cliente);
 //		Categoria categoria = new Categoria("ELETRONICO");
-		Produto produto = new Produto("Video Game", "Playstation 5", new BigDecimal(15), categoriaDao.findByName("ELETRONICO"));
+		Produto produto = new Produto("Video Game", "Playstation 5", new BigDecimal(15), categoriaDao.findByName("CELULAR"));
 
 		
 		em.getTransaction().begin();

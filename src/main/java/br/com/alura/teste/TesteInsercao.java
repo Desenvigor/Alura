@@ -12,11 +12,11 @@ import br.com.alura.util.JPAUtil;
 
 public class TesteInsercao {
 	public static void main(String[] args) {	
+		inserirNovoProduto();
 		EntityManager em = JPAUtil.createEntityManager();
 		CategoriaDAO dao = new CategoriaDAO(em);
 		System.out.println(dao.findByName("CELULAR"));
 		
-		inserirNovoProduto();
 	}
 
 	private static void inserirNovoProduto() {
